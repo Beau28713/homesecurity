@@ -7,7 +7,7 @@ Coming soon
 ## Requirements
 Python: 3.9+  
 Opencv: 4.8.0.74  
-Arduino: 2.0.0+
+Arduino IDE: 2.0.0+
 
 ## How to install
 Coming soon
