@@ -1,6 +1,7 @@
 import cv2
 from socket import socket, AF_INET, SOCK_DGRAM
 import time
+import keyboard
 
 
 def display_image():
@@ -37,17 +38,21 @@ def vid_capture(camera_option: int):
     cv2.destroyAllWindows()
 
 
-def send_receive_data():
-    address = ("169.254.104.124", 5000)
+def set_up_communication():
     client_socket = socket(AF_INET, SOCK_DGRAM)
     client_socket.settimeout(1)
 
+    return client_socket
+
+
+def send_data(client_socket):
+    arduino_ip = ("169.254.104.124", 5000)
     data = "red"
-    client_socket.sendto(str.encode(data), address) # send data to arduino
+    client_socket.sendto(str.encode(data), arduino_ip)  # send data to arduino
 
     try:
-        recieved_data = client_socket.recvfrom(2048)  # reading data sent from arduino
-        print(recieved_data)
+        arduino_data = client_socket.recvfrom(2048)  # reading data sent from arduino
+        print(arduino_data[0].decode())
 
     except:
         pass
@@ -55,8 +60,21 @@ def send_receive_data():
     time.sleep(2)
 
 
+def recieved_data(client_socket):
+    computer_ip = ("169.254.104.125", 5000)
+
+    # used to recieve data from the Arduino
+    client_socket.bind(computer_ip)
+    arduino_data = client_socket.recvfrom(2048)
+
+    print((arduino_data[0].decode()))
+    client_socket.close()
+
+
 def main():
-    send_receive_data()
+    client_socket = set_up_communication()
+    # send_data(client_socket)
+    recieved_data(client_socket)
 
 
 if __name__ == "__main__":
