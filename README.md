@@ -16,4 +16,4 @@ Arduino IDE: 2.0.0+
 &emsp; SPI
 
 ## Images
-Coming soon
+![UI](https://github.com/Beau28713/homesecurity/assets/65408911/e70ace1c-829a-49c2-b095-ec419f599bb8)
