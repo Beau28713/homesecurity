@@ -33,14 +33,13 @@ void loop() {
   }
 
   if (gate_state == 0) {
-    Serial.println(gate_state);
     web_cam();
   }
 }
 
 void web_cam() {
   udp.beginPacket(computer_ip, local_port);  // use this method to start a connection to send data to the recieving computer
-  udp.write("Gate open");                             // Send data back to Python
+  udp.write("True");                             // Send data back to Python
   udp.endPacket();
 }
 

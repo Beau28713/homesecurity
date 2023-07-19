@@ -66,15 +66,23 @@ def recieved_data(client_socket):
     # used to recieve data from the Arduino
     client_socket.bind(computer_ip)
     arduino_data = client_socket.recvfrom(2048)
-
-    print((arduino_data[0].decode()))
     client_socket.close()
+
+    return eval(arduino_data[0].decode())
 
 
 def main():
-    client_socket = set_up_communication()
-    # send_data(client_socket)
-    recieved_data(client_socket)
+    # using the while loop for testing, will be removed when UX is created
+    while True:
+        try:
+            client_socket = set_up_communication()
+            switch_state = recieved_data(client_socket)
+            if switch_state:
+                vid_capture(1)
+            time.sleep(1)  # used for debugging, will be removed in final
+        except BaseException as error:
+            print(f"The current error is {error}")
+            time.sleep(1)  # used for debugging, will be removed in final
 
 
 if __name__ == "__main__":
