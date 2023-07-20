@@ -15,6 +15,5 @@ Arduino IDE: 2.0.0+
 &emsp; EthernetUDP 2.0.2+  
 &emsp; SPI
 
-## Images
-
+##  
 ![UI (1)](https://github.com/Beau28713/homesecurity/assets/65408911/2778362f-32c6-43e4-b083-a1605adc8ca2)
